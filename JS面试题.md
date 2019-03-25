@@ -147,4 +147,8 @@ bind也是改变this的指向，不过不是在调用时生效，而是返回一
 * 将CSS放到顶部，Javascript方法底部
 * 压缩图片以及使用CSS Sprite
 * 使用CDN加速，适当进行文件缓存
-* 
+
+### window.onload和DOMContentLoaded的区别？
+
+* window.onload:页面中所有的数据加载完成后，才会执行，包括图片，css等
+* DOMContentLoaded: DOM结构加载完成后执行，需要等待图片等其他资源加载完成
