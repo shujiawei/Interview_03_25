@@ -8,6 +8,7 @@
     + absolute + margin负值居中
     + absolute + translate
     + flex + aligin-item justify-content
+    + dispalay: table + 
 
 ### HTML语义化
 
@@ -39,7 +40,7 @@
 
 ### reflow和repaint
 
-**reflow重流**
+**reflow回流**
 
 当涉及到DOM节点的布局属性发生变化时，就会重新计算该属性，浏览器会重新描绘相应的元素，此过程叫reflow（回流或重排）。
 

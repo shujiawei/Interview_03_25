@@ -1,0 +1,60 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{padding: 0; margin: 0;}
+        html{
+            padding-top: 200px; 
+            padding-left: 200px; 
+        }
+        #circle{
+            width: 400px;
+            height: 400px;
+            background: red;
+            /* border-radius: 50%; */
+            border: 1px solid #000;
+            border-top: 10px solid blue;
+            animation: dong ease 2s forwards;
+            transform-origin: 400px 400px;
+            transform: rotate(90deg) translate(400px, 400px);
+        }
+        @keyframes dong{
+            0%{
+                transform: rotate(90deg);
+                opacity: 0;
+            }
+            100%{
+                transform: rotate(0deg);
+                opacity: 1;
+            }
+        }
+        #circle1{
+            width: 400px;
+            height: 400px;
+            background: yellow;
+            border: 1px solid #000;
+            border-top: 10px solid blue;
+            /* animation: dong1 ease 2s forwards; */
+            /* transform-origin: 400px 400px; */
+            transform: rotate(-90deg) translateX(-400px);
+        }
+        @keyframes dong1{
+            0%{
+                transform: rotate(90deg);
+                opacity: 0;
+            }
+            100%{
+                transform: rotate(0deg);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- <div id="circle">ashdj</div> -->
+    <div id="circle1">12312</div>
+</body>
+</html>

@@ -46,12 +46,12 @@ function debounce(fn, awite) {
  * @param {Number} delay 节流间隔
  */
 function throttle(fn, delay) {
-    const prev = new Date().getTime();
+    let prev = new Date().getTime();
     return function() {
         let next = Date.now();
         if (next - prev >= delay) {
             fn.apply(this, arguments);
-            next = Date.now();
+            prev = Date.now();
         }
     }
 }
@@ -89,12 +89,13 @@ function ajax() {
  */
 function getParams(str) {
     const queryParams = str ? str : window.location.search.replace('?', '');
-    if (!params) return {};
+    if (!queryParams) return {};
     // const splitQuery = queryParams.split('&'); // ['a=1','b=2']
-    return queryParams.split('&').map(item => {
-        const secondSplitQuery = item.split('='); // ['a', '1']
-        return { [secondSplitQuery[0]]: secondSplitQuery[1] };
-    });
+    return queryParams.split('&').reduce((pre, next) => {
+        const secondSplitQuery = next.split('='); // ['a', '1']
+        pre[secondSplitQuery[0]] = secondSplitQuery[1];
+        return pre;
+    }, {});
 }
  
 /**
@@ -124,3 +125,46 @@ window.detachEvent('click')
 //  module.exports cloneDeep;
 
 // export const cloneDeeps = cloneDeep;
+
+// 兼容event
+
+const EventUtil = {
+    addHandler(element, type, handler) {
+        if (element.addEventListener) {
+            element.addEventListener(type, handler, false);
+        } else if (element.attachEvent) {
+            element.attachEvent('on' + type, handler);
+        } else {
+            element['on' + type] = handler;
+        }
+    },
+    getEvent(event) {
+        return event ? event : window.event;
+    },
+    getTarget(event) {
+        return event.target || event.srcElement;
+    },
+    preventDefault(event) {
+        if (event.preventDefault) {
+            event.preventDefault();
+        } else {
+            event.returnValue = false;
+        }
+    },
+    removeHandler(element, type, handler) {
+        if (element.removeEventListener) {
+            element.removeEventListener(type, handler, false);
+        } else if (element.detachEvent) {
+            element.detachEvent('on' + type, handler);
+        } else {
+            element['on' + type] = null;
+        }
+    },
+    stopPropagation(event) {
+        if (event.stopPropagation) {
+            event.stopPropagation();
+        } else {
+            event.cancelBubble = true;
+        }
+    }
+}

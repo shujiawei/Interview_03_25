@@ -16,19 +16,26 @@
     </ul>
     <script>
         window.onload = function (){
+            const li = document.querySelector('li');
+            li.onclick = function() {
+                console.log(2343)
+            }
+            li.addEventListener('click', function() {
+                console.log(2342423);
+            })
             // document.querySelectorAll('li').forEach((item, index) => {
             //     item.addEventListener('click', function() {
             //         console.log(index);
             //     });
             // });
-            const parent = document.getElementsByTagName('li');
-            for (var i = 0; i < parent.length; i++) {
-                (function (i){
-                    parent[i].onclick = function() {
-                        console.log(i);
-                    }
-                })(i)
-            }
+            // const parent = document.getElementsByTagName('li');
+            // for (var i = 0; i < parent.length; i++) {
+            //     (function (i){
+            //         parent[i].onclick = function() {
+            //             console.log(i);
+            //         }
+            //     })(i)
+            // }
 
             // Array.prototype.slice.call(parent).forEach((item, index) => {
             //     item.addEventListener('click', function() {
